@@ -1,0 +1,33 @@
+seed: 42
+device: cuda
+num_workers: 4
+batch_size: 32
+epochs: 80
+save_every: 5
+mixed_precision: true
+label_smoothing: 0.05
+
+optimizer:
+  name: adamw
+  backbone_lr: 0.0001
+  head_lr: 0.0005
+  weight_decay: 0.0001
+
+scheduler:
+  name: cosine
+  warmup_epochs: 5
+  min_lr: 1.0e-6
+
+finetune:
+  mode: frozen   # frozen or finetune
+  use_reg_global: false
+  use_reg_phy: false
+  beta_global: 0.05
+  beta_phy: 0.02
+
+preprocess:
+  dfs_log: true
+  cir_abs: true
+  cir_log: true
+  normalize: per_sample_zscore
+  eps: 1.0e-6
